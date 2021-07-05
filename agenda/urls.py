@@ -16,14 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import RedirectView
-from core.views import get_by_title, get_all, login_user, submit_login, logout_user
+from core import views
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/eventos')),
     path('admin/', admin.site.urls),
-    path('evento/<titulo_evento>', get_by_title),
-    path('eventos/', get_all),
-    path('login/', login_user),
-    path('login/submit', submit_login),
-    path('logout/', logout_user)
+    path('evento/<titulo_evento>', views.get_by_title),
+    path('eventos/', views.get_all),
+    path('eventos/create', views.create_evento),
+    path('eventos/submit', views.submit_evento),
+    path('login/', views.login_user),
+    path('login/submit', views.submit_login),
+    path('logout/', views.logout_user)
 ]

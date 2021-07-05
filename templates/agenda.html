@@ -2,7 +2,12 @@
 
 {% block content %}
     <h1>Agenda de Tarefas</h1>
+
+    <a href="/eventos/create">
+        <button type="button">Novo evento</button>
+    </a>
+    <br/>
     {% for event in events %}
-        <b>{{event.titulo}} - {{event.get_data_evento}}</b>
+        <b>{{event.titulo}} - {{event.get_data_evento}}</b><br/>
     {% endfor %}
 {% endblock %}

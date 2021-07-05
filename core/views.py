@@ -24,7 +24,7 @@ def submit_login(request: HttpRequest) -> HttpResponseRedirect:
         else:
             messages.error(request,"Usuário ou Senha invalidos")
         
-        return redirect('/')
+    return redirect('/')
 
 def get_by_title(request: HttpRequest, titulo_evento: str) -> HttpResponse:
     event = Evento.objects.get(titulo=titulo_evento)
@@ -39,3 +39,24 @@ def get_all(request: HttpRequest) -> HttpResponse:
     return render(request, 'agenda.html', {
         'events': events,
     })
+
+@login_required(login_url='/login/')
+def create_evento(request: HttpRequest) -> HttpResponse:
+    return render(request, 'evento.html')
+
+@login_required(login_url='/login/')
+def submit_evento(request: HttpRequest) -> HttpResponseRedirect:
+    if request.POST:
+        titulo = request.POST.get('titulo')
+        data_evento = request.POST.get('data_evento')
+        descricao = request.POST.get('descricao')
+        usuario = request.user
+        
+        Evento.objects.create(
+            titulo=titulo,
+            descricao=descricao,
+            data_evento=data_evento,
+            usuario=usuario
+        )
+
+    return redirect('/')
