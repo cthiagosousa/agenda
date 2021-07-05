@@ -1,0 +1,8 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+    <h1>Agenda de Tarefas</h1>
+    {% for event in events %}
+        <b>{{event.titulo}} - {{event.get_data_evento}}</b>
+    {% endfor %}
+{% endblock %}
