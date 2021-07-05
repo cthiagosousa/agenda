@@ -2,12 +2,15 @@
 
 {% block content %}
     <h1>Agenda de Tarefas</h1>
-
+    <h2>Olá, {{user}}</h2>
     <a href="/eventos/create">
         <button type="button">Novo evento</button>
     </a>
     <br/>
     {% for event in events %}
-        <b>{{event.titulo}} - {{event.get_data_evento}}</b><br/>
+        <p>
+            <b>{{event.titulo}} - {{event.get_data_evento}} - {{event.local}}</b>
+            (<a href="/eventos/create?id={{event.id}}">Editar</a> / <a href="/eventos/delete/{{event.id}}">Excluir</a>)
+        </p>
     {% endfor %}
 {% endblock %}
