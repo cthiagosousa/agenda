@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="submit" method="POST"> {% csrf_token %}
+        <div align="center">
+            <label>Usuário: </label>
+            <input type="text" name="user"/>
+            <label>Senha: </label>
+            <input type="password" name="password" />
+            <button type="submit">Entrar</button>
+        </div>
+    </form>
+    {% for message in messages %}
+        <strong>{{message}}</strong>
+    {% endfor %}
+</body>
+</html>
